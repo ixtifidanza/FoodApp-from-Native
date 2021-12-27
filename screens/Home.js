@@ -1,14 +1,17 @@
 import React from 'react'
 import { SafeAreaView, View, ScrollView } from 'react-native';
-import Categories from '../components/Categories';
-import HeaderTabs from '../components/HeaderTabs';
+import { Divider } from 'react-native-elements/dist/divider/Divider';
+import BottomTabs from '../components/home/BottomTabs';
+import Categories from '../components/home/Categories';
+import HeaderTabs from '../components/home/HeaderTabs';
 import RestourantItems, { 
     localRestaurants,
-} from "../components/RestourantItems";
+} from "../components/home/RestourantItems";
 
-import SearchBar from '../components/SearchBar'
+import SearchBar from '../components/home/SearchBar'
 
 // const VELP_API_KEY
+
 
 
 export default function Home() {
@@ -16,7 +19,7 @@ export default function Home() {
     const  [restaurantData, setRestaurantData] = React.useState(localRestaurants)
 
     return (
-        <SafeAreaView style={{ backgroundColor: "#eee", flex: 1}}>
+        <SafeAreaView style={{ backgroundColor: "#eee", flex: 1}}>  
             <View style={{backgroundColor: 'white', padding: 15}}>
                 <HeaderTabs />
                 <SearchBar />
@@ -25,6 +28,8 @@ export default function Home() {
                 <Categories/>
                 <RestourantItems restaurantData={restaurantData} />
             </ScrollView>
+            <Divider width={1} />
+            <BottomTabs/>
         </SafeAreaView>
     );
 }
