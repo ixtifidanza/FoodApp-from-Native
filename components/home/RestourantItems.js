@@ -39,23 +39,34 @@ import Categories from './Categories';
 ]
 
 
-export default function RestourantItems(props) {
+export default function RestourantItems({ navigation, ...props}) {
     return (
-        <TouchableOpacity activeOpacity={1} style={{marginBottom: 20}}>
-            {props.restaurantData.map((restaurant, index) => ( 
-            <View 
-            key={index}
-            style={{marginTop: 10, padding: 15, backgroundColor: 'white'}}
+        <>
+        {props.restaurantData.map((restaurant, index) => ( 
+            <TouchableOpacity 
+                key={index}
+                activeOpacity={1} 
+                style={{marginBottom: 20}}
+                onPress={() => navigation.navigate("RestaurantDetail", {
+                    name: restaurant.name,
+                    image: restaurant.image_url,
+                    price: restaurant.price,
+                    reveiws: restaurant.review_count,
+                    rating: restaurant.rating,
+                    categories: restaurant.categories,
+                })
+              }
             >
-
+                 
+                <View key={index} style={{marginTop: 10, padding: 15, backgroundColor: 'white'}}>
                 <RestaurantImage image={restaurant.image_url} />
-                <RestaurantInfo 
-                name={restaurant.name} 
-                rating={restaurant.rating} />
-            </View>
-            ))}
+                <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
+                </View>
+
         </TouchableOpacity>
-    )
+        ))}
+     </>
+    );
 }
 
 const RestaurantImage = (props) => (

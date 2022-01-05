@@ -1,16 +1,17 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
 
-const image = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
 
-const title = 'FarmHouse Kitch Thai Cuisine';
+
 const description = 'Thai Comfort Food $$ 4 stars (2913+)';
 
-export default function About() {
+export default function About({ route }) {
+    const {name,image} = route.params;
+  
     return (
         <View> 
             <RestaurantImage image={image} />
-            <RestaurantTitle title={title} />
+            <RestaurantTitle title={name} />
             <RestaurantDescription description={description} />
         </View>
     );

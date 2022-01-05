@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text, Image, ScrollView} from 'react-native' 
-
 const items = [
     {
         image: require("../../assets/images/shopping-bag.png"),
@@ -36,19 +35,19 @@ const items = [
     },
 ];
 
-const getRestaurantsApi = () => {
-    const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState([]);
-    console.log(data);
+// const getRestaurantsApi = () => {
+//     const [isLoading, setLoading] = useState(true);
+//     const [data, setData] = useState([]);
+//     console.log(data);
   
-    useEffect(() => {
-      fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
-        .then((response) => response.json())
-        .then((json) => setData(json))
-        .catch((error) => console.error(error))
-        .finally(() => setLoading(false));
-    }, []);
-}
+//     useEffect(() => {
+//       fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+//         .then((response) => response.json())
+//         .then((json) => setData(json))
+//         .catch((error) => console.error(error))
+//         .finally(() => setLoading(false));
+//     }, []);
+// }
 
 export default function Categories() {
     return (

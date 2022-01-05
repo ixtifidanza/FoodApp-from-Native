@@ -14,9 +14,9 @@ import SearchBar from '../components/home/SearchBar'
 
 
 
-export default function Home() {
+export default function Home({ navigation }) {
 
-    const  [restaurantData, setRestaurantData] = React.useState(localRestaurants)
+    const  [restaurantData,] = React.useState(localRestaurants)
 
     return (
         <SafeAreaView style={{ backgroundColor: "#eee", flex: 1}}>  
@@ -26,7 +26,7 @@ export default function Home() {
             </View>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Categories/>
-                <RestourantItems restaurantData={restaurantData} />
+                <RestourantItems restaurantData={restaurantData} navigation={navigation} />
             </ScrollView>
             <Divider width={1} />
             <BottomTabs/>

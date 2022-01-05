@@ -9,16 +9,23 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/stack": "^6.0.11",
     "expo": "~44.0.1",
     "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-bouncy-checkbox": "^2.1.9",
     "react-native-elements": "^3.4.2",
+    "react-native-gesture-handler": "^2.1.0",
     "react-native-google-places-autocomplete": "^2.4.1",
+    "react-native-safe-area-context": "^3.3.2",
     "react-native-vector-icons": "^9.0.0",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "react-redux": "^7.2.6",
+    "tslib": "^2.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
