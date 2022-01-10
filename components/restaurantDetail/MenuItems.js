@@ -2,58 +2,9 @@ import React from 'react'
 import { View, Text, Image, StyleSheet,ScrollView,} from 'react-native'
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { Divider } from 'react-native-elements';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const foods = [
-    {
-        title: "Marvarid",
-        description: 'of type and scrambled it to make a type specimen book.',
-        price: 15.5,
-        image: "https://avatars.mds.yandex.net/get-altay/1583613/2a0000016f0dadc5fcca1df5e7cab4d6af2f/XXL"
-    },
-    {
-        title: "Marvarid",
-        description: 'of type and scrambled it to make a type specimen book.',
-        price: 15.5,
-        image: "https://avatars.mds.yandex.net/get-altay/4336412/2a00000177fdf45603aff750916c144ac921/XXL"
-    },
-    {
-        title: "Marvarid",
-        description: 'of type and scrambled it to make a type specimen book.',
-        price: 15.5,
-        image: "https://avatars.mds.yandex.net/get-altay/4336412/2a00000177fdf45603aff750916c144ac921/XXL"
-    },
-    {
-        title: "Marvarid",
-        description: 'of type and scrambled it to make a type specimen book.',
-        price: 15.5,
-        image: "https://avatars.mds.yandex.net/get-altay/4336412/2a00000177fdf45603aff750916c144ac921/XXL"
-    },
-    {
-        title: "Marvarid",
-        description: 'of type and scrambled it to make a type specimen book.',
-        price: 15.5,
-        image: "https://www.afisha.uz/ui/catalog/2014/12/0256196_b.jpeg"
-    },
-    {
-        title: "Marvarid",
-        description: 'of type and scrambled it to make a type specimen book.',
-        price: 15.5,
-        image: "https://avatars.mds.yandex.net/get-altay/4336412/2a00000177fdf45603aff750916c144ac921/XXL"
-    },
-    {
-        title: "Marvarid",
-        description: 'of type and scrambled it to make a type specimen book.',
-        price: 15.5,
-        image: "https://avatars.mds.yandex.net/get-altay/4336412/2a00000177fdf45603aff750916c144ac921/XXL"
-    },
-    {
-        title: "Marvarid",
-        description: 'of type and scrambled it to make a type specimen book.',
-        price: 15.5,
-        image: "https://avatars.mds.yandex.net/get-altay/4336412/2a00000177fdf45603aff750916c144ac921/XXL"
-    },
-];
+
 
 const styles = StyleSheet.create({
     menuItemStyle: {
@@ -68,7 +19,12 @@ const styles = StyleSheet.create({
 })
 
 
-export default function MenuItems({ restaurantName}) {
+export default function MenuItems({ 
+    restaurantName, 
+    foods, 
+    hideCheckbox, 
+    marginLeft,
+}) {
     const dispatch = useDispatch();
 
     const selectItem = (item, checkboxValue) => 
@@ -80,17 +36,28 @@ export default function MenuItems({ restaurantName}) {
             checkboxValue: checkboxValue,
         },
     });
+
+    const cartItems = useSelector(state => state.cartReducer.selectedItems.items)
+
+    const isFoodInCart = (food, cartItems) => 
+        Boolean(cartItems.find((item) => item.title === food.title));
+
+
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
         {foods.map((food, index) =>(
             <View key={index}>
                 <View style={styles.menuItemStyle}>
-                    <BouncyCheckbox iconStyle={{ borderColor: "lightgray", borderRadius: 0,}}
+                    { hideCheckbox ? (<></>) : (
+                    <BouncyCheckbox 
+                    iconStyle={{ borderColor: "lightgray", borderRadius: 0,}}
+                    isChecked={isFoodInCart(food, cartItems)}
                     fillColor="green"
                     onPress={(checkboxValue) => selectItem(food, checkboxValue)}
                     />
+                    )}
                     <FoodInfo food={food} />
-                    <FoodImage food={food} /> 
+                    <FoodImage food={food} marginLeft={marginLeft ? marginLeft : 0} /> 
                 </View>
                 <Divider width={0.5} orientation='vertical' style={{marginHorizontal: 20}}/>
             </View>
@@ -107,10 +74,16 @@ const FoodInfo = (props) => (
     </View>
 );
 
-const FoodImage = (props) => (
+const FoodImage = ({ marginLeft, ...props }) => (
     <View>
-        <Image source={{ uri: props.food.image }} 
-        style={{width: 100, height: 100, borderRadius: 8}}
+        <Image 
+        source={{ uri: props.food.image }} 
+        style={{
+            width: 100, 
+            height: 100, 
+            borderRadius: 8, 
+            marginLeft: marginLeft,
+        }}
         />
     </View>
 );

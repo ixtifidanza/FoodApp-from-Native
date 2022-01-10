@@ -1,11 +1,16 @@
 {
   "expo": {
-    "name": "foodApp",
-    "slug": "foodApp",
-    "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
-  },
-  "name": "foodApp"
+   "name": "Food Uz",
+   "icon": "./assets/images/burger.png",
+   "version": "1.0.0",
+   "slug": "foodUz",
+   "ios": {
+     "bundleIdentifier": "com.yourcompany.yourappname",
+     "buildNumber": "1.0.0"
+   },
+   "android": {
+     "package": "by UzCoder99",
+     "versionCode": 1
+   }
+  }
 }

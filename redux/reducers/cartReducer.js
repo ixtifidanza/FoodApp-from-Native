@@ -1,5 +1,5 @@
 let defaultState = {
-    selectedItems: {items: [], restaurantName: ""}
+    selectedItems: {items: [], restaurantName: ""},
 };
 
 let cartReducer = (state = defaultState, action) => {
@@ -8,7 +8,7 @@ let cartReducer = (state = defaultState, action) => {
         case "ADD_TO_CART": {
             let newState = { ...state};
 
-            if(action.payload.checkboxValue) {
+            if (action.payload.checkboxValue) {
                 console.log("ADD TO CART");
 
            
